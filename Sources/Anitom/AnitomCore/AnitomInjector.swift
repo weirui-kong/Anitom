@@ -8,12 +8,12 @@
 import Foundation
 import SwiftUI
 public class AnitomInjector: ObservableObject{
-    @Published var isRecursiveOn: Bool = false
-    @Published var isShaddowOn: Bool = false
-    @Published var offsetX: CGFloat = 0
-    @Published var offsetY: CGFloat = 0
-    @Published var scale: CGFloat = 1
-    @Published var animation: (TimeInterval) -> Animation = { t in
+    @Published public var isRecursiveOn: Bool = false
+    @Published public var isShaddowOn: Bool = false
+    @Published public var offsetX: CGFloat = 0
+    @Published public var offsetY: CGFloat = 0
+    @Published public var scale: CGFloat = 1
+    @Published public var animation: (TimeInterval) -> Animation = { t in
         Animation.spring(duration: t)
     }
     
