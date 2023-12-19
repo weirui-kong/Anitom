@@ -6,6 +6,63 @@ Currently, the project is in its **early stages** and undergoing refinement of i
 
 > As a college student, my understanding of Swift and SwiftUI may not be extensive, so I welcome any feedback or corrections from anyone.
 
+# UI Elements
+
+## ReversibleCard
+
+**ReversibleCardr**, by combining `.scaleEffect()`, `.rotationEffect()` and `.rotation3DEffect()` effects, allows a view to appear as a reversible card. You can customize both `front` and `back` view, as well as the way the action triggers. The builtin background is Material, however, you should diasble it if target devices are lack of GPU performance.
+
+<table>
+  <thead>
+    <tr>
+      <th>Preview</th>
+      <th>Good Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./README_SRC/reversiblecard.gif" alt="Floating " style="max-width: 300px;"></td>
+      <td><img src="./README_SRC/reversiblecard2.gif" alt="Floating " style="max-width: 300px;"></td>
+    </tr>
+  </tbody>
+</table>
+
+### Declaration
+
+```swift
+struct ReversibleCard: View {
+    init(orientation: AnitomOrientation, useBuiltinBackgrounds: Bool = true, tapToFlip: Bool = true, front: @escaping () -> some View, back: @escaping () -> some View) {}
+    
+    @State var isFlipped = false
+    var useBuiltinBackgrounds = true
+    var tapToFlip = true
+    private var flipConfig: (CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat)
+    var front: AnyView
+    var back: AnyView
+    var body: some View {}
+    
+    func makeEmptyView() -> some View {}
+}
+```
+
+### Usage
+```swift
+ReversibleCard(orientation: .vertical, useBuiltinBackgrounds: true, tapToFlip: true){
+    VStack{
+        Text(".vertical")
+            .font(.title)
+    }
+}back: {
+    VStack{
+        Text(".vertical")
+            .font(.title)
+    }
+}
+```
+### Restriction
+Under this mode, only `.vertical`, `.horizontal`, and `.diagonal` of `AnitomOrientation` is allowed, otherwise your app crashes.
+
+Please also make sure that the bounds of both sides are similiar, or the card behaves wierd. Use fixed `.frame(x: CGFloat, y: CGFloat)` in each card content will help.
 # Effects
 
 ## Floating Recursive / OnHover
@@ -48,3 +105,6 @@ Image("swift")
         secondary: AnitomMovement(ori: .up, dist: 0)
     )
 ```
+
+### Restriction
+Under this mode, only `.up`, `.down`, `.left` and `.right` of `AnitomOrientation` is allowed, otherwise your app crashes.
