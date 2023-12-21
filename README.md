@@ -33,7 +33,9 @@ Currently, the project is in its **early stages** and undergoing refinement of i
 struct ReversibleCard: View {
     init(orientation: AnitomOrientation, useBuiltinBackgrounds: Bool = true, tapToFlip: Bool = true, front: @escaping () -> some View, back: @escaping () -> some View) {}
     
-    @State var isFlipped = false
+    @State private var isFlipped = false
+    @State private var externalBool: Binding<Bool>?
+    @Binding private var trigger: Bool
     var useBuiltinBackgrounds = true
     var tapToFlip = true
     private var flipConfig: (CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat)
@@ -46,6 +48,9 @@ struct ReversibleCard: View {
 ```
 
 ### Usage
+
+You can either use your customized flag or leave it empty, in which case a built-in flag will be activated.
+
 ```swift
 ReversibleCard(orientation: .vertical, useBuiltinBackgrounds: true, tapToFlip: true){
     VStack{
@@ -57,6 +62,23 @@ ReversibleCard(orientation: .vertical, useBuiltinBackgrounds: true, tapToFlip: t
         Text(".vertical")
             .font(.title)
     }
+}
+
+@State var isflipped: Bool = false
+ReversibleCard(isFlipped: $isflipped, orientation: .vertical){
+    VStack{
+        Text("use external binding front")
+            .font(.title)
+    }
+}back: {
+    VStack{
+        Text("use external binding back")
+            .font(.title)
+    }
+}
+Button("toggle"){
+    isflipped.toggle()
+    print("external controller:\(isflipped)")
 }
 ```
 ### Restriction
