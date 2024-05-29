@@ -8,9 +8,41 @@ Currently, the project is in its **early stages** and undergoing refinement of i
 
 # UI Elements
 
+## ImageStack
+
+**ImageStack**, by combining `.rotationEffect()` and `.rotation3DEffect()` effects, allows a list of images to display like a tile (yep, aka iMessage style). All you need to do is provide a list `images: [Image]`, orientation and a customizable frame size. Enabling 3D effect may cause frame drop on older devices.
+
+<table>
+  <thead>
+    <tr>
+      <th>Preview</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="./README_SRC/image_stack_compressed.gif" alt="image is loading..." style="max-width: 300px;"></td>
+    </tr>
+  </tbody>
+</table>
+
+```swift
+@State var imgs = [Image("dog1"), Image("dog2"), Image("dog3"), Image("dog4")]
+@State var orientation = AnitomOrientation.clockwise
+
+ImageStack(
+    images: $imgs, 
+    imageSize: CGSize(width: 200.0, height: 300.0), 
+    orientation: orientation, 
+    advanced3DEffectEnabled: true
+)
+
+// Using default dragThreshold is recommended.
+```
+
+
 ## ReversibleCard
 
-**ReversibleCardr**, by combining `.scaleEffect()`, `.rotationEffect()` and `.rotation3DEffect()` effects, allows a view to appear as a reversible card. You can customize both `front` and `back` view, as well as the way the action triggers. The builtin background is Material, however, you should diasble it if target devices are lack of GPU performance.
+**ReversibleCard**, by combining `.scaleEffect()`, `.rotationEffect()` and `.rotation3DEffect()` effects, allows a view to appear as a reversible card. You can customize both `front` and `back` view, as well as the way the action triggers. The builtin background is Material, however, you should diasble it if target devices are lack of GPU performance.
 
 <table>
   <thead>
@@ -21,31 +53,12 @@ Currently, the project is in its **early stages** and undergoing refinement of i
   </thead>
   <tbody>
     <tr>
-      <td><img src="./README_SRC/reversiblecard.gif" alt="Floating " style="max-width: 300px;"></td>
-      <td><img src="./README_SRC/reversiblecard2.gif" alt="Floating " style="max-width: 300px;"></td>
+      <td><img src="./README_SRC/reversiblecard.gif" alt="image is loading... " style="max-width: 300px;"></td>
+      <td><img src="./README_SRC/reversiblecard2_compressed.gif" alt="image is loading... " style="max-width: 300px;"></td>
     </tr>
   </tbody>
 </table>
 
-### Declaration
-
-```swift
-struct ReversibleCard: View {
-    init(orientation: AnitomOrientation, useBuiltinBackgrounds: Bool = true, tapToFlip: Bool = true, front: @escaping () -> some View, back: @escaping () -> some View) {}
-    
-    @State private var isFlipped = false
-    @State private var externalBool: Binding<Bool>?
-    @Binding private var trigger: Bool
-    var useBuiltinBackgrounds = true
-    var tapToFlip = true
-    private var flipConfig: (CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat)
-    var front: AnyView
-    var back: AnyView
-    var body: some View {}
-    
-    func makeEmptyView() -> some View {}
-}
-```
 
 ### Usage
 
@@ -93,38 +106,28 @@ Please also make sure that the bounds of both sides are similiar, or the card be
 
 <img src="./README_SRC/floating.gif" alt="Floating " style="max-width: 300px;">
 
-### Declaration
-```swift
-func onHoverFloating(
-    inj injector: AnitomInjector, 
-    primary: AnitomMovement = AnitomMovement(ori: .up, dist: 20), 
-    secondary: AnitomMovement = AnitomMovement(ori: .up, dist: 0), 
-    nonstop: Bool = true, 
-    duration: Double = 0.5, 
-    dropShaddow: Bool = true, 
-    scaleMargin: Double? = 0.02
-    ) -> some View
 
-func recursiveFloating(
-    inj injector: AnitomInjector, 
-    primary: AnitomMovement = AnitomMovement(ori: .up, dist: 20), 
-    secondary: AnitomMovement = AnitomMovement(ori: .up, dist: 0), 
-    nonstop: Bool = true, 
-    duration: Double = 1, 
-    dropShaddow: Bool = true, 
-    scaleMargin: Double? = 0.02
-    ) -> some View
-
-```
 ### Usage
 ```swift
 @StateObject var inj = AnitomInjector( animation: {_ in Animation.easeInOut(duration: 1)})
 
+// simple 
+Image("swift")
+    .onHoverFloating(
+        inj: inj, 
+        primary: AnitomMovement(ori: .up, dist: 20), 
+        secondary: AnitomMovement(ori: .up, dist: 0)
+    )
+// full
 Image("swift")
     .recursiveFloatingScaled(
         inj: inj, 
         primary: AnitomMovement(ori: .up, dist: 20), 
-        secondary: AnitomMovement(ori: .up, dist: 0)
+        secondary: AnitomMovement(ori: .up, dist: 0),
+        nonstop: Bool = true, 
+        duration: Double = 1, 
+        dropShaddow: Bool = true, 
+        scaleMargin: Double? = 0.02
     )
 ```
 

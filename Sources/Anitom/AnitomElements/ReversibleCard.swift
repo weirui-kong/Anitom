@@ -69,8 +69,8 @@ struct ReversibleCard: View {
     // For example, when the trigger value changes, the card might react by flipping or updating its content.
     @Binding private var trigger: Bool
     
-    var useBuiltinBackgrounds = true
-    var tapToFlip = true
+    private var useBuiltinBackgrounds = true
+    private var tapToFlip = true
     private var flipConfig: (CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat)
     var front: AnyView
     var back: AnyView
@@ -120,7 +120,7 @@ struct ReversibleCard: View {
     
     /// Creates an empty view.
     /// - Returns: An empty view.
-    func makeEmptyView() -> some View {
+    private func makeEmptyView() -> some View {
         EmptyView()
     }
 }

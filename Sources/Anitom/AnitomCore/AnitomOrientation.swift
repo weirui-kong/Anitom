@@ -15,4 +15,7 @@ public enum AnitomOrientation: String, CaseIterable{
     case vertical = "vertical"
     case horizontal = "horizontal"
     case diagonal = "diagonal"
+    
+    case clockwise = "clockwise"
+    case counterclockwise = "counterclockwise"
 }

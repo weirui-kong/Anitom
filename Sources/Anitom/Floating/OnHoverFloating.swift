@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 extension View{
-    func onHoverFloating(inj injector: AnitomInjector, primary: AnitomMovement = AnitomMovement(ori: .up, dist: 20), secondary: AnitomMovement = AnitomMovement(ori: .up, dist: 0), nonstop: Bool = true, duration: Double = 0.5, dropShaddow: Bool = true, scaleMargin: Double? = 0.02) -> some View{
+    func onHoverFloating(inj injector: AnitomInjector, primary: AnitomMovement = AnitomMovement(ori: .up, dist: 20), secondary: AnitomMovement = AnitomMovement(ori: .up, dist: 0), duration: Double = 0.5, dropShaddow: Bool = true, scaleMargin: Double? = 0.02) -> some View{
         
         return self
             .offset(x: injector.offsetX, y: injector.offsetY)
