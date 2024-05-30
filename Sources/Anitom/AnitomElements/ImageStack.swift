@@ -54,7 +54,7 @@ struct ImageStack: View {
                         (rotationAngleUnit * Double(io * (orientation == .clockwise ? 1 : -1))) + (io == 0 ? dragRotation : .zero),
                         anchor: orientation == .clockwise ? .bottomTrailing : .bottomLeading
                     )
-                    .rotation3DEffect(dragRotation * 0.2, axis: (1, 1, 0))
+                    .rotation3DEffect(advanced3DEffectEnabled ? dragRotation * 0.2 : .zero, axis: (1, 1, 0))
                     .shadow(radius: 5)
                     .opacity(1 - Double(io) * 0.25)
                     .zIndex(Double(-io))

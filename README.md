@@ -20,7 +20,7 @@ Currently, the project is in its **early stages** and undergoing refinement of i
   </thead>
   <tbody>
     <tr>
-      <td><img src="./README_SRC/image_stack_compressed.gif" alt="image is loading..." style="max-width: 300px;"></td>
+      <td><img src="https://imgs.onespirit.fyi/i/2024/05/30/kdjpm5.gif" alt="image is loading..." style="max-width: 300px;"></td>
     </tr>
   </tbody>
 </table>
@@ -53,8 +53,8 @@ ImageStack(
   </thead>
   <tbody>
     <tr>
-      <td><img src="./README_SRC/reversiblecard.gif" alt="image is loading... " style="max-width: 300px;"></td>
-      <td><img src="./README_SRC/reversiblecard2_compressed.gif" alt="image is loading... " style="max-width: 300px;"></td>
+      <td><img src="https://imgs.onespirit.fyi/i/2024/05/30/kdn0ue.gif" alt="image is loading... " style="max-width: 300px;"></td>
+      <td><img src="https://imgs.onespirit.fyi/i/2024/05/30/kefbnd.gif" alt="image is loading... " style="max-width: 300px;"></td>
     </tr>
   </tbody>
 </table>
@@ -104,7 +104,7 @@ Please also make sure that the bounds of both sides are similiar, or the card be
 
 **Floating Recursive / OnHover**, by combining `.offset()` and `.shadow()` effects, allows a view to appear as if it's floating above other interfaces. It is particularly suitable for use in guide pages with large image splash. The `.scaledEffect()` effect is optional, but I highly recommend using it for that.
 
-<img src="./README_SRC/floating.gif" alt="Floating " style="max-width: 300px;">
+<img src="https://imgs.onespirit.fyi/i/2024/05/30/ka66fh.gif" alt="Floating " style="max-width: 300px;">
 
 
 ### Usage
