@@ -20,7 +20,7 @@ Currently, the project is in its **early stages** and undergoing refinement of i
   </thead>
   <tbody>
     <tr>
-      <td><img src="https://imgs.onespirit.fyi/i/2024/05/30/kdjpm5.gif" alt="image is loading..." style="max-width: 300px;"></td>
+      <td><img src="https://imgs.onespirit.fyi/i/2024/06/01/owyk38.gif" alt="image is loading..." style="max-width: 300px;"></td>
     </tr>
   </tbody>
 </table>
@@ -36,7 +36,7 @@ ImageStack(
     advanced3DEffectEnabled: true
 )
 
-// Using default dragThreshold is recommended.
+// Using default dragThreshold is recommended. You can also attach a closure to perform actions when an image is tapped.
 ```
 
 

@@ -45,20 +45,27 @@ struct ImageStack: View {
     /// Indicates if the advanced 3D effect is enabled.
     var advanced3DEffectEnabled = true
     
+    /// Closure to be called when an image is tapped
+    var onImageTap: ((Image) -> Void)?
+    
     var body: some View {
         ZStack {
             ForEach(0..<images.count, id: \.self) { i in
                 let io = abs(i + currentIndexOffset) % images.count
-                imageContainer(image: images[(i + 1) % images.count])
+                imageContainer(image: images[i])
                     .rotationEffect(
                         (rotationAngleUnit * Double(io * (orientation == .clockwise ? 1 : -1))) + (io == 0 ? dragRotation : .zero),
                         anchor: orientation == .clockwise ? .bottomTrailing : .bottomLeading
                     )
                     .rotation3DEffect(advanced3DEffectEnabled ? dragRotation * 0.2 : .zero, axis: (1, 1, 0))
                     .shadow(radius: 5)
-                    .opacity(1 - Double(io) * 0.25)
+                    .opacity(1.5 - Double(io) * 0.45)
+                    .blur(radius: CGFloat(0.8 * Double(io)))
                     .zIndex(Double(-io))
                     .offset(io == 0 ? dragOffset : .zero)
+                    .onTapGesture {
+                        onImageTap?(images[i])
+                    }
                     .gesture(
                         io == 0 ? DragGesture()
                             .onChanged { value in
